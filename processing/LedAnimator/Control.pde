@@ -105,6 +105,13 @@ void setupControls() {
    .getCaptionLabel().align(CENTER,CENTER)
    ; 
    
+  cp5.addToggle("showSamplingBoundingBox")
+    .setPosition(xPos,yPos+=30)
+    .setSize(20,20)
+    .setValue(showSamplingBoundingBox)
+    .setLabel("Show bounding box")
+    ;
+   
   cp5.addIcon("rewindButtonMovie", 10)
    .setPosition(xPos+3,yPos+=30)
    .setSize(20,20)

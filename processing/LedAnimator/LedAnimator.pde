@@ -31,6 +31,7 @@ int[] inputPixels;
 int inputImageWidth, inputImageHeight;
 float inputImageX, inputImageY;
 int colorSamplingMode = RECT;
+boolean showSamplingBoundingBox = false;
 
 PShape ledLayout;
 float ledLayoutX, ledLayoutY;
@@ -193,10 +194,12 @@ color getLedColor(String ledName, int mode) {
   //color sample = color(255, 60, 0);
   color sample = getColorFromInputImage(new PVector(px, py), size);
   led.setFill(sample);
-  /*fill(sample);
-  stroke(255);
-  ellipseMode(CENTER);
-  ellipse(px+ledLayoutX, py+ledLayoutY, pw, ph);*/
+  if(showSamplingBoundingBox) {
+    noFill();
+    stroke(0);
+    rectMode(CENTER);
+    rect(px+ledLayoutX, py+ledLayoutY, pw, ph);
+  }
   return sample;
 }
   
