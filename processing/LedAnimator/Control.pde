@@ -158,24 +158,24 @@ void setupControls() {
     ;
   helpText2.setText(
     "Play a led animation file: \n"
-    +"1 ;  Open animation (.dat-file) \n"
-    +"2;  Open led layout \n"
+    +"1 ;  Open Led layout \n"
+    +"2;  Open animation (.dat-file) \n"
     +"3;  Preview animation \n"
     +"4;  Press Make Images to save each frame as an image \n"
     );
     
   yPos += helpText2.getHeight(); 
    
-   cp5.addButton("openMovieFileButton2")
+   cp5.addButton("openLedLayoutFileButton2")
    .setPosition(xPos, yPos)
    .setSize(100,20)
-   .setLabel("Open Dat File")
+   .setLabel("Open Led Layout File")
    ;
    
-  cp5.addButton("openLedLayoutFileButton2")
+   cp5.addButton("openMovieFileButton2")
    .setPosition(xPos, yPos+=30)
    .setSize(100,20)
-   .setLabel("Open Led Layout File")
+   .setLabel("Open Dat File")
    ; 
    
   cp5.addIcon("rewindButtonDat", 10)
