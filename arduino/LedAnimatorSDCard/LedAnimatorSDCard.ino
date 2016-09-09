@@ -2,16 +2,37 @@
 #include <SPI.h>
 #include <SD.h>
 
-#define NUM_LEDS      19
-#define LED_PIN       9
-#define DATA_PIN      3
-#define CLOCK_PIN     8
-#define BRIGHTNESS    64
-#define LED_TYPE      WS2812B
-#define COLOR_ORDER   GRB
+// Data pin that led data will be written out over
+#define DATA_PIN 9
+// Clock pin only needed for SPI based chipsets when not using hardware SPI
+#define CLOCK_PIN 8
+// Number of leds
+#define NUM_LEDS    19
+// Set overall brightness 
+#define BRIGHTNESS  64
+// Set which type of leds are being used
+#define LED_TYPE    WS2812B
+// Set the color order for (R)ed, (G)reen and (B)lue channel
+#define COLOR_ORDER GRB
+
 #define CMD_NEW_DATA  1
 #define BAUD_RATE     500000
 #define CHIP_SELECT   10
+
+/*
+FastLED provides these pre-conigured incandescent color profiles:
+  Candle, Tungsten40W, Tungsten100W, Halogen, CarbonArc,
+  HighNoonSun, DirectSunlight, OvercastSky, ClearBlueSky,
+
+FastLED provides these pre-configured gaseous-light color profiles:
+  WarmFluorescent, StandardFluorescent, CoolWhiteFluorescent,
+  FullSpectrumFluorescent, GrowLightFluorescent, BlackLightFluorescent,
+  MercuryVapor, SodiumVapor, MetalHalide, HighPressureSodium,
+
+FastLED also provides an "Uncorrected temperature" profile
+  UncorrectedTemperature;
+*/
+#define TEMPERATURE UncorrectedTemperature
 
 const char HEADER = 'H';
 CRGB leds[NUM_LEDS];
@@ -22,10 +43,10 @@ File file;
 
 void setup() {
   delay( 3000 ); // power-up safety delay
-  FastLED.addLeds<LED_TYPE, LED_PIN, COLOR_ORDER>(leds, NUM_LEDS).setCorrection(TypicalLEDStrip);
-  //FastLED.addLeds<WS2801, DATA_PIN, CLOCK_PIN, RGB>(leds, NUM_LEDS);
-  //FastLED.setTemperature(Candle);
+  //FastLED.addLeds<LED_TYPE, DATA_PIN, COLOR_ORDER>(leds, NUM_LEDS).setCorrection(TypicalLEDStrip);
+  FastLED.addLeds<WS2801, DATA_PIN, CLOCK_PIN, RGB>(leds, NUM_LEDS);
   FastLED.setBrightness(BRIGHTNESS);
+  FastLED.setTemperature(TEMPERATURE);
 
   for(int n=0; n<NUM_LEDS; n++) {
     leds[n] = CRGB::Black;
@@ -45,7 +66,7 @@ void setup() {
   }
   Serial.println("sd-card init done");
 
-  openFile("led2.dat");
+  openFile("anim.dat");
 }
 
 
