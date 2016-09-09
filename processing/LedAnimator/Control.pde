@@ -106,7 +106,7 @@ void setupControls() {
    ; 
    
   cp5.addToggle("showSamplingBoundingBox")
-    .setPosition(xPos,yPos+=30)
+    .setPosition(xPos,yPos+=25)
     .setSize(20,20)
     .setValue(showSamplingBoundingBox)
     .setLabel("Show bounding box")

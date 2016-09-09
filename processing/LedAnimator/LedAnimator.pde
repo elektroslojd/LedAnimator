@@ -141,6 +141,7 @@ void drawHelp() {
   if(showHelp) {
     fill(0, 220);
     noStroke();
+    rectMode(CORNER);
     rect(0, 0, 240, height);
     cp5.draw();
     cp5.show();
@@ -196,7 +197,7 @@ color getLedColor(String ledName, int mode) {
   led.setFill(sample);
   if(showSamplingBoundingBox) {
     noFill();
-    stroke(0);
+    stroke(255,20,0);
     rectMode(CENTER);
     rect(px+ledLayoutX, py+ledLayoutY, pw, ph);
   }
