@@ -337,6 +337,7 @@ void makeImages() {
     //imageOutput = createGraphics(int(ledLayout.width/displayDensity()), int(ledLayout.height/displayDensity()), JAVA2D);
     imageOutput = createGraphics(int(ledLayout.width), int(ledLayout.height), JAVA2D);
     doSaveImagesToFile = true;
+    println("Save to: "+getFolderName()+File.separator+getFileName());
     playButtonDat();
   }
 }
