@@ -218,9 +218,9 @@ color getColorFromInputImage(PVector pos, PVector size) {
   if(yEnd < 0) { yEnd = 0; }
   if(yEnd >= inputImageHeight) { yEnd = inputImageHeight; }
   if(xStart < 0) { xStart = 0; }
-  if(xStart >= inputImageHeight) { xStart = inputImageHeight-1; }
+  if(xStart >= inputImageWidth) { xStart = inputImageWidth-1; }
   if(xEnd < 0) { xEnd = 0; }
-  if(xEnd >= inputImageHeight) { xEnd = inputImageHeight; }
+  if(xEnd >= inputImageWidth) { xEnd = inputImageWidth; }
   int r = 0;
   int g = 0;
   int b = 0;
