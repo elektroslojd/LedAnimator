@@ -156,6 +156,10 @@ void movieEvent(Movie m) {
     movie.loadPixels();
     arrayCopy(movie.pixels, inputPixels);
     movie.updatePixels();
+  }else if(isMovieLoaded() && inputPixels == null) {
+    if(movie.width > 0) {
+      setupInputPixels(movie.width, movie.height);  
+    }
   }
 }
 void captureEvent(Capture c) {
@@ -386,10 +390,13 @@ void setMovieFile(File file) {
 }
 
 void setupInputPixels(int w, int h) {
+  if(w == 0 || h == 0) { return; } 
   inputImageWidth = w;
   inputImageHeight = h;
   println("inputImageWidth="+inputImageWidth+", inputImageHeight="+inputImageHeight);
-  inputPixels = new int[inputImageWidth*inputImageHeight];  
+  inputPixels = new int[inputImageWidth*inputImageHeight];
+  movieFrameRate = movie.frameRate;
+  setFrameRate(movieFrameRate);
 }
 
 void setLedLayoutFile(File file) {
