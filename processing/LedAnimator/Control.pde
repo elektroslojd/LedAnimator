@@ -113,7 +113,7 @@ void setupControls() {
     ;
    
   cp5.addIcon("rewindButtonMovie", 10)
-   .setPosition(xPos+3,yPos+=30)
+   .setPosition(xPos+3,yPos+=45)
    .setSize(20,20)
    .setFont(fontIcon)
    .setFontIcons(#00f049,#00f049,#00f049)
