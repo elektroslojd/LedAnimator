@@ -372,6 +372,7 @@ void setMovieFile(File file) {
     startReadingFile(datFileName);
     showDatControls(true);
   }else if(fileExtension != null) {
+    println("Loading movie: "+movieFileName);
     movie = new Movie(this, filePath);
     movie.play();
     movie.jump(0);
