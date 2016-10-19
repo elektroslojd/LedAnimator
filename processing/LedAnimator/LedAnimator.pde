@@ -395,8 +395,10 @@ void setupInputPixels(int w, int h) {
   inputImageHeight = h;
   println("inputImageWidth="+inputImageWidth+", inputImageHeight="+inputImageHeight);
   inputPixels = new int[inputImageWidth*inputImageHeight];
-  movieFrameRate = movie.frameRate;
-  setFrameRate(movieFrameRate);
+  if(movie != null) {
+    movieFrameRate = movie.frameRate;
+    setFrameRate(movieFrameRate);
+  }
 }
 
 void setLedLayoutFile(File file) {
