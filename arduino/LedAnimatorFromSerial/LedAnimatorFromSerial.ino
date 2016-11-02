@@ -2,20 +2,20 @@
 
 
 // Data pin that led data will be written out over
-#define DATA_PIN 3
+#define DATA_PIN 9
 // Clock pin only needed for SPI based chipsets when not using hardware SPI
 #define CLOCK_PIN 8
 // Number of leds
 #define NUM_LEDS    19
 // Set overall brightness 
-#define BRIGHTNESS  64
+#define BRIGHTNESS  90
 // Set which type of leds are being used
 #define LED_TYPE    WS2812B
 // Set the color order for (R)ed, (G)reen and (B)lue channel
 #define COLOR_ORDER GRB
 
 #define CMD_NEW_DATA 1
-#define BAUD_RATE 57600
+#define BAUD_RATE 250000
 
 
 /*
@@ -44,6 +44,9 @@ void setup() {
   //FastLED.addLeds<LED_TYPE, DATA_PIN, CLOCK_PIN, COLOR_ORDER>(leds, NUM_LEDS).setCorrection(TypicalLEDStrip);
   FastLED.setBrightness(BRIGHTNESS);
   FastLED.setTemperature(TEMPERATURE);
+
+  pinMode(13, OUTPUT);
+  digitalWrite(13, LOW);
   
   for(int y=0; y<NUM_LEDS; y++) {
     leds[y] = CRGB::Black;
@@ -60,9 +63,17 @@ char serialInput (){
 }
 
 void loop() {
-  while (serialInput() != HEADER) {}
+  digitalWrite(13, LOW);
   
-  Serial.readBytes((char*)leds, NUM_LEDS*3);
-  FastLED.delay(1000/UPDATES_PER_SECOND); 
+  if(serialInput() == HEADER) {
+    digitalWrite(13, HIGH);
+    int bytesRead = 0;
+    while(bytesRead < (NUM_LEDS *3)) { 
+      bytesRead += Serial.readBytes(((uint8_t*)leds) + bytesRead, (NUM_LEDS*3)-bytesRead);
+    }
+  }
+
+  FastLED.show();
+  while(Serial.available() > 0) { Serial.read(); } 
 }
 

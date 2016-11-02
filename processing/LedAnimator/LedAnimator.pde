@@ -8,7 +8,7 @@ import processing.serial.*;
 
 import screenCapture.*;
 
-public static final int BAUD_RATE = 57600;
+public static final int BAUD_RATE = 250000;
 public static final char HEADER    = 'H';
 
 public static final int RECT = 1;
