@@ -561,5 +561,8 @@ void keyPressed() {
     playFile = !playFile;
   }else if (key=='f' || key=='F') {
     println("frameRate = "+frameRate);
+  }else if(key == 'a' || key == 'A') {
+    screenCapture.setAlwaysOnTop(!screenCapture.setAlwaysOnTop());
+    println("screenCapture.setAlwaysOnTop() = "+screenCapture.setAlwaysOnTop());
   }
 }
